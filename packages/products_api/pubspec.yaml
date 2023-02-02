@@ -1,0 +1,17 @@
+name: products_api
+description: A Dart API Client for the Open-Meteo API.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  dio: ^4.0.6
+  retrofit: ^3.3.1
+  json_annotation: ^4.8.0
+  logger: ^1.1.0
+
+dev_dependencies:
+  build_runner: ^2.3.3
+  json_serializable: ^6.6.0
+  retrofit_generator: ^4.2.0
