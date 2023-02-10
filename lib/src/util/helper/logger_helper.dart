@@ -1,4 +1,11 @@
 import 'package:logger/logger.dart';
 
-final logger = Logger(printer: PrettyPrinter());
+class LoggerHelper {
+  final Logger _logger;
 
+  LoggerHelper() : _logger = Logger(printer: PrettyPrinter());
+
+  void e(String message, dynamic e, StackTrace? stack) {
+    _logger.e(message, e, stack);
+  }
+}

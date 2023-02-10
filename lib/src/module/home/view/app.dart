@@ -1,3 +1,5 @@
+import 'package:bloc_architecture/src/module/home/view/app_view.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class App extends StatelessWidget {
@@ -5,6 +7,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const MaterialApp(
+      home: AppView(),
+    );
   }
 }

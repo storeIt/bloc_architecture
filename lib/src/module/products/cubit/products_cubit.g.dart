@@ -17,11 +17,11 @@ ProductState _$ProductStateFromJson(Map<String, dynamic> json) =>
               (v) =>
                   $enumDecodeNullable(_$ProductStatusEnumMap, v) ??
                   ProductStatus.initial),
-          product: $checkedConvert(
-              'product',
-              (v) => v == null
-                  ? null
-                  : Product.fromJson(v as Map<String, dynamic>)),
+          products: $checkedConvert(
+              'products',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+                  .toList()),
         );
         return val;
       },
@@ -30,7 +30,7 @@ ProductState _$ProductStateFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProductStateToJson(ProductState instance) =>
     <String, dynamic>{
       'status': _$ProductStatusEnumMap[instance.status]!,
-      'product': instance.product,
+      'products': instance.products,
     };
 
 const _$ProductStatusEnumMap = {

@@ -1,16 +1,29 @@
 import 'package:bloc_architecture/src/util/service/rest_api_service.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class RetrofitService {
   static final _dio = getDio();
-  static const int apiTimeout = 3000;
+  static const int _apiTimeout = 3000;
 
   final RestClient _apiClient = RestClient(_dio);
 
   static Dio getDio() {
     Dio dio = getCleanDio();
-    dio.options.connectTimeout = apiTimeout;
-    dio.options.receiveTimeout = apiTimeout;
+    dio.options.connectTimeout = _apiTimeout;
+    dio.options.receiveTimeout = _apiTimeout;
+
+    if (kDebugMode) {
+      dio.interceptors.add(
+        LogInterceptor(
+          requestHeader: true,
+          requestBody: true,
+          responseHeader: true,
+          responseBody: true,
+          request: false,
+        ),
+      );
+    }
     return dio;
   }
 

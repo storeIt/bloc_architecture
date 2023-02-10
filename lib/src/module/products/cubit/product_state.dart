@@ -15,13 +15,23 @@ extension ProductStatusX on ProductStatus {
 @JsonSerializable()
 class ProductState extends Equatable {
   final ProductStatus status;
-  final Product product;
+  final List<Product> products;
 
-  const ProductState({
+  ProductState({
     this.status = ProductStatus.initial,
-    Product? product,
-  }) : product = product ?? Product.empty;
+    List<Product>? products,
+  }) : products = products ?? [];
+
+  ProductState copyWith({
+    ProductStatus? status,
+    List<Product>? products,
+  }) {
+    return ProductState(
+      status: status ?? this.status,
+      products: products ?? this.products,
+    );
+  }
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [status, products];
 }
