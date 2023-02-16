@@ -1,6 +1,8 @@
-part of 'base_cubit.dart';
+import 'package:equatable/equatable.dart';
 
-@immutable
-abstract class BaseState {}
+abstract class BaseState extends Equatable {
+  const BaseState();
 
-class BaseInitial extends BaseState {}
+  @override
+  List<Object?> get props => [];
+}

@@ -13,6 +13,7 @@ class ProductsBlocObserver extends BlocObserver {
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
     log('ProductsBlocObserver onError $error');
+    print('ProductsBlocObserver onError $error');
   }
 
   @override

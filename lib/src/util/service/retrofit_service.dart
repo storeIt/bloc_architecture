@@ -16,10 +16,8 @@ class RetrofitService {
     if (kDebugMode) {
       dio.interceptors.add(
         LogInterceptor(
-          requestHeader: true,
-          requestBody: true,
-          responseHeader: true,
-          responseBody: true,
+          requestHeader: false,
+          responseHeader: false,
           request: false,
         ),
       );

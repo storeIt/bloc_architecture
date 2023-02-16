@@ -6,19 +6,19 @@ part 'product.g.dart';
 @JsonSerializable()
 // TODO BaseResponse extends Equatable and child fields should be final
 class Product extends BaseResponse {
-  String id;
-  String name;
-  String details;
-  double price;
+  final String id;
+  final String name;
+  final String details;
+  final double price;
 
-  Product({
+  const Product({
     required this.id,
     required this.name,
     required this.details,
     required this.price,
   });
 
-  static final empty = Product(
+  static const empty = Product(
     id: '',
     name: '',
     details: '',
@@ -27,13 +27,13 @@ class Product extends BaseResponse {
 
   Product copyWith({
     String? id,
-    String? productName,
+    String? name,
     String? details,
     double? price,
   }) {
     return Product(
       id: id ?? this.id,
-      name: productName ?? this.name,
+      name: name ?? this.name,
       details: details ?? this.details,
       price: price ?? this.price,
     );

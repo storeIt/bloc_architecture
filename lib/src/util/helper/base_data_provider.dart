@@ -1,5 +1,5 @@
-// TODO Remove before commit
-
+// // TODO Remove before commit
+//
 // import 'dart:async';
 // import 'dart:io';
 //
@@ -13,6 +13,7 @@
 //     DioErrorType.sendTimeout,
 //     DioErrorType.receiveTimeout
 //   ];
+//
 //
 //   Future<bool> executeRequest<T>({required Future<T> request,
 //     required Function success,
@@ -54,7 +55,7 @@
 //       {required T response, required Function success, required bool updateState, Function? error}) {
 //     T obj = response;
 //
-//     bool isSuccess = obj is BaseResponse ? obj.success : true;
+//     // bool isSuccess = obj is BaseResponse ? obj.success : true;
 //
 //     if (isSuccess) {
 //       success(obj);

@@ -1,3 +1,4 @@
+import '../../../util/helper/logger_helper.dart';
 import '../../../util/service/rest_api_service.dart';
 import '../../../util/service/retrofit_service.dart';
 import '../../../util/service/service_locator.dart';
@@ -9,11 +10,6 @@ class ProductsRepository {
   ProductsRepository() : _apiClient = locator<RetrofitService>().apiClient;
 
   Future<List<Product>> fetchProducts() async {
-    try {
-      return await _apiClient.fetchProducts();
-    } on Exception {
-      print('ProductsRepository on Exception');
-      rethrow;
-    }
+    return await _apiClient.fetchProducts();
   }
 }
