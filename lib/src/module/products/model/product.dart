@@ -4,7 +4,6 @@ import 'package:json_annotation/json_annotation.dart';
 part 'product.g.dart';
 
 @JsonSerializable()
-// TODO BaseResponse extends Equatable and child fields should be final
 class Product extends BaseResponse {
   final String id;
   final String name;

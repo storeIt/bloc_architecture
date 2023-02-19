@@ -1,80 +1,55 @@
-// // TODO Remove before commit
-//
-// import 'dart:async';
-// import 'dart:io';
-//
-// import 'package:dio/dio.dart';
-//
-// import '../../base/model/base_response.dart';
-//
-// class BaseDataProvider {
-//   List<DioErrorType> connectionTimeout = [
-//     DioErrorType.connectTimeout,
-//     DioErrorType.sendTimeout,
-//     DioErrorType.receiveTimeout
-//   ];
-//
-//
-//   Future<bool> executeRequest<T>({required Future<T> request,
-//     required Function success,
-//     Function? error,
-//     bool updateState = true}) async {
-//     try {
-//       T response = await request;
-//
-//       // return processResponse<T>(response: response, model: model, success: success, error: error, updateState: updateState);
-//     } on DioError catch (e) {
-//       // changeState(model, ViewState.retrieved, updateState);
-//
-//       if (e.response?.statusCode == HttpStatus.notModified) {
-//         return false;
-//       }
-//
-//       if (connectionTimeout.contains(e.type)) {
-//         errorHandler(error, 'Error message', e.response?.statusCode);
-//         return false;
-//       }
-//
-//
-//       errorHandler(error, e.response?.statusMessage ?? 'backup Error message',
-//           e.response?.statusCode);
-//       // changeState(model, ViewState.retrieved, updateState);
-//     }
-//     return false;
-//   }
-//
-//   void errorHandler(error, [String message = '', int? errorCode]) {
-//     if (error == null) {
-//       // model?.setError(message);
-//     } else {
-//       error(message);
-//     }
-//   }
-//
-//   bool processResponse<T>(
-//       {required T response, required Function success, required bool updateState, Function? error}) {
-//     T obj = response;
-//
-//     // bool isSuccess = obj is BaseResponse ? obj.success : true;
-//
-//     if (isSuccess) {
-//       success(obj);
-//       // if (isMounted(model)) {
-//       //   changeState(model, ViewState.retrieved, updateState);
-//       // }
-//       return true;
-//     } else {
-//       // if (isMounted(model)) {
-//       //   errorHandler(model, error, obj.getMessage());
-//       //   changeState(model, ViewState.retrieved, updateState);
-//       // }
-//     }
-//
-//     return false;
-//   }
-//
-// // void changeState(BaseViewModel? model, ViewState state, bool updateState) {
-// //   if (updateState) {
-// //     model?.setState(state);
-// //   }
-// }
+import 'dart:io';
+
+import 'package:bloc_architecture/src/constant/network_constant.dart';
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+
+import '../exception/failure.dart';
+import '../service/service_locator.dart';
+import 'logger_helper.dart';
+
+class BaseDataProvider {
+  final _logger = locator<LoggerHelper>();
+  final List<DioErrorType> connectionTimeoutErrorTypes = [
+    DioErrorType.connectionTimeout,
+    DioErrorType.receiveTimeout,
+    DioErrorType.sendTimeout,
+  ];
+
+  Future<Either<Failure, T>> executeRequest<T>({required Future<T> request}) async {
+    if (kDebugMode) {
+      _logger.i('executeRequest: $request');
+    }
+
+    try {
+      return Right(await request);
+    } on DioError catch (e, s) {
+      return Left(ServerFailure(_mapDioErrorToMessage(e), e, s));
+    } on SocketException catch (e, s) {
+      return Left(ConnectionFailure(e, s));
+    } on FormatException catch (e, s) {
+      return Left(FormatFailure(e, s));
+    } catch (e, s) {
+      return Left(UnhandledFailure(e, s));
+    }
+  }
+
+  String _mapDioErrorToMessage(DioError error) {
+    switch (error.type) {
+      case DioErrorType.connectionTimeout:
+      case DioErrorType.sendTimeout:
+      case DioErrorType.receiveTimeout:
+      case DioErrorType.connectionError:
+        return NetworkConstant.noConnection;
+      case DioErrorType.badResponse:
+        return NetworkConstant.badResponse;
+      case DioErrorType.cancel:
+        return NetworkConstant.cancelRequest;
+      case DioErrorType.unknown:
+        return NetworkConstant.unknownException;
+      case DioErrorType.badCertificate:
+        return NetworkConstant.badCertificate;
+    }
+  }
+}

@@ -10,8 +10,9 @@ class RetrofitService {
 
   static Dio getDio() {
     Dio dio = getCleanDio();
-    dio.options.connectTimeout = _apiTimeout;
-    dio.options.receiveTimeout = _apiTimeout;
+    dio.options.connectTimeout = const Duration(milliseconds: _apiTimeout);
+    dio.options.receiveTimeout = const Duration(milliseconds: _apiTimeout);
+    dio.options.sendTimeout = const Duration(milliseconds: _apiTimeout);
 
     if (kDebugMode) {
       dio.interceptors.add(

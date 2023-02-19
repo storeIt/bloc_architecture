@@ -12,3 +12,4 @@ void main() {
   setupLocator();
   runApp(const App());
 }
+

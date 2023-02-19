@@ -13,7 +13,7 @@ extension ProductStatusX on ProductStatus {
 }
 
 @JsonSerializable()
-class ProductState extends Equatable {
+class ProductState extends BaseState {
   final ProductStatus status;
   final List<Product> products;
 

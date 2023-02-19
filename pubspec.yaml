@@ -10,13 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 #  flutter_native_splash: ^2.2.17
-  dio: ^4.0.6
-  retrofit: ^3.3.1
+  dio: ^5.0.0
+  retrofit: ^4.0.1
   json_annotation: ^4.8.0
   equatable: ^2.0.5
   flutter_bloc: ^8.1.2
   get_it: ^7.2.0
   logger: ^1.1.0
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
@@ -24,7 +25,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   build_runner: ^2.3.3
   json_serializable: ^6.6.1
-  retrofit_generator: ^4.2.0
+  retrofit_generator: ^5.0.0
 
 flutter_native_splash:
   color: '#42a5f5'
