@@ -15,7 +15,6 @@ class ProductList extends StatefulWidget {
 class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
-    print('ProductList build()');
     context.read<ProductsCubit>().fetchProducts();
 
     return Scaffold(

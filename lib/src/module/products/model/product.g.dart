@@ -11,18 +11,19 @@ Product _$ProductFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = Product(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as int),
           name: $checkedConvert('name', (v) => v as String),
-          details: $checkedConvert('details', (v) => v as String),
-          price: $checkedConvert('price', (v) => (v as num).toDouble()),
+          details: $checkedConvert('description', (v) => v as String),
+          price: $checkedConvert('price', (v) => v as String),
         );
         return val;
       },
+      fieldKeyMap: const {'details': 'description'},
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'details': instance.details,
+      'description': instance.details,
       'price': instance.price,
     };

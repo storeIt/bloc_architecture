@@ -5,10 +5,11 @@ part 'product.g.dart';
 
 @JsonSerializable()
 class Product extends BaseResponse {
-  final String id;
+  final int id;
   final String name;
+  @JsonKey(name: 'description')
   final String details;
-  final double price;
+  final String price;
 
   const Product({
     required this.id,
@@ -18,17 +19,17 @@ class Product extends BaseResponse {
   });
 
   static const empty = Product(
-    id: '',
+    id: 0,
     name: '',
     details: '',
-    price: 0,
+    price: '',
   );
 
   Product copyWith({
-    String? id,
+    int? id,
     String? name,
     String? details,
-    double? price,
+    String? price,
   }) {
     return Product(
       id: id ?? this.id,
@@ -42,5 +43,5 @@ class Product extends BaseResponse {
       _$ProductFromJson(json);
 
   @override
-  List<Object> get props => [id, name, details, price];
+  List<Object?> get props => [id, name, details, price];
 }

@@ -2,7 +2,6 @@ import 'package:bloc_architecture/src/util/helper/base_data_provider.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../util/exception/failure.dart';
 import '../../util/helper/logger_helper.dart';
 
 abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
@@ -14,10 +13,23 @@ abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
         logger = LoggerHelper(),
         super(initialState);
 
-  void executeRequest<T>({required Future<T> request}) async {
+  void executeRequest<T>({required Future<T> request, required Function success}) async {
     return await Task(() => dataProvider.executeRequest(request: request))
         .attempt()
         .run()
-        .then((value) => print('value ${value.isLeft()}'));
+        .then(
+          (either) => either.fold(
+            (failure) => logger.e('BaseCubit logger failure', failure, StackTrace.current),
+            (value) {
+              success(value);
+            },
+          ),
+        ).catchError(onError);
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    logger.e('BaseCubit onError()', error, stackTrace);
+    super.onError(error, stackTrace);
   }
 }

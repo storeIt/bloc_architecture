@@ -1,7 +1,5 @@
 import 'package:bloc_architecture/src/base/repository/base_repository.dart';
 import 'package:bloc_architecture/src/module/products/model/product.dart';
-import 'package:bloc_architecture/src/util/exception/failure.dart';
-import 'package:dartz/dartz.dart';
 
 import '../../../util/service/rest_api_service.dart';
 import '../../../util/service/retrofit_service.dart';

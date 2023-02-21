@@ -15,14 +15,13 @@ class ProductBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.asset('assets/images/splash.png'),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(defaultPadding),
               // For  demo we use fixed height  and width
               // Now we don't need them
-              // height: 180,
-              // width: 160,
+              height: 180,
+              width: 160,
               decoration: BoxDecoration(
                 color: const Color(0xFF3D82AE),
                 borderRadius: BorderRadius.circular(16),
@@ -43,7 +42,7 @@ class ProductBox extends StatelessWidget {
             ),
           ),
           Text(
-            "\$${_product.price}",
+            _product.price,
             style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],
