@@ -1,5 +1,4 @@
 import 'package:bloc_architecture/src/base/app_cubit/base_state.dart';
-import 'package:flutter/material.dart';
 
 enum RequestStatus { initial, loading, loaded, failure }
 

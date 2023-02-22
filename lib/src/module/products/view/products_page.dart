@@ -5,8 +5,8 @@ import '../../products/cubit/products_cubit.dart';
 import '../../products/repository/products_repository.dart';
 import '../../products/view/product_list.dart';
 
-class AppView extends StatelessWidget {
-  const AppView({super.key});
+class ProductsPage extends StatelessWidget {
+  const ProductsPage({super.key});
 
   @override
   Widget build(BuildContext context) {

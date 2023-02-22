@@ -19,12 +19,14 @@ abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
         .run()
         .then(
           (either) => either.fold(
-            (failure) => logger.e('BaseCubit logger failure', failure, StackTrace.current),
+            (failure) {
+              onError(failure, StackTrace.current);
+            },
             (value) {
               success(value);
             },
           ),
-        ).catchError(onError);
+        );
   }
 
   @override

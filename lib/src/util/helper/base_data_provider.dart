@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bloc_architecture/src/constant/network_constant.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../exception/failure.dart';
 import '../service/service_locator.dart';
@@ -18,9 +17,6 @@ class BaseDataProvider {
   ];
 
   Future<Either<Failure, T>> executeRequest<T>({required Future<T> request}) async {
-    if (kDebugMode) {
-      _logger.i('executeRequest: $request');
-    }
 
     try {
       return Right(await request);
@@ -32,6 +28,8 @@ class BaseDataProvider {
       return Left(FormatFailure(e, s));
     } catch (e, s) {
       return Left(UnhandledFailure(e, s));
+    } finally {
+
     }
   }
 
