@@ -3,14 +3,9 @@ part of 'app_bloc.dart';
 @immutable
 abstract class AppState {}
 
-class AppInitial extends AppState {}
+class AppInitialState extends AppState {}
 class AppLoadingState extends AppState {}
-
-class AppSuccessState<V> extends AppState {
-  final V value;
-
-  AppSuccessState(this.value);
-}
+class AppLoadedState extends AppState {}
 
 class AppFailureState<E> extends AppState {
   final E error;

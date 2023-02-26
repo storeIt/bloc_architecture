@@ -1,5 +1,6 @@
 import 'package:bloc_architecture/src/module/products/cubit/products_cubit.dart';
 import 'package:bloc_architecture/src/module/products/view/product_box.dart';
+import 'package:bloc_architecture/src/util/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class ProductList extends StatefulWidget {
 class _ProductListState extends State<ProductList> {
   @override
   Widget build(BuildContext context) {
-    context.read<ProductsCubit>().fetchProducts();
+    context.read<ProductsCubit>().fetchProducts(context);
 
     return Scaffold(
       body: Column(

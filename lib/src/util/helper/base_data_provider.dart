@@ -5,11 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../exception/failure.dart';
-import '../service/service_locator.dart';
-import 'logger_helper.dart';
 
 class BaseDataProvider {
-  final _logger = locator<LoggerHelper>();
   final List<DioErrorType> connectionTimeoutErrorTypes = [
     DioErrorType.connectionTimeout,
     DioErrorType.receiveTimeout,
@@ -28,8 +25,6 @@ class BaseDataProvider {
       return Left(FormatFailure(e, s));
     } catch (e, s) {
       return Left(UnhandledFailure(e, s));
-    } finally {
-
     }
   }
 

@@ -1,7 +1,9 @@
 import 'package:bloc_architecture/src/util/helper/base_data_provider.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../module/app_home/bloc/app_bloc.dart';
 import '../../util/helper/logger_helper.dart';
 
 abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
@@ -13,7 +15,8 @@ abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
         logger = LoggerHelper(),
         super(initialState);
 
-  void executeRequest<T>({required Future<T> request, required Function success}) async {
+  void executeRequest<T>({required BuildContext context, required Future<T> request, required Function success}) async {
+    context.read<AppBloc>().add(AppLoadingEvent());
     return await Task(() => dataProvider.executeRequest(request: request))
         .attempt()
         .run()
@@ -26,6 +29,9 @@ abstract class BaseCubit<BaseState> extends Cubit<BaseState> {
               success(value);
             },
           ),
+        )
+        .whenComplete(
+          () => context.read<AppBloc>().add(AppLoadedEvent()),
         );
   }
 
