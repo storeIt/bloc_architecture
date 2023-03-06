@@ -6,35 +6,47 @@ part 'product.g.dart';
 @JsonSerializable()
 class Product extends BaseResponse {
   final int id;
+  @JsonKey(name: 'title')
   final String name;
+  final String category;
   @JsonKey(name: 'description')
   final String details;
-  final String price;
+  @JsonKey(name: 'image')
+  final String imageUrl;
+  final double price;
 
   const Product({
     required this.id,
     required this.name,
+    required this.category,
     required this.details,
+    required this.imageUrl,
     required this.price,
   });
 
   static const empty = Product(
     id: 0,
     name: '',
+    category: '',
     details: '',
-    price: '',
+    imageUrl: '',
+    price: 0.0
   );
 
   Product copyWith({
     int? id,
     String? name,
+    String? category,
     String? details,
-    String? price,
+    String? imageUrl,
+    double? price,
   }) {
     return Product(
       id: id ?? this.id,
       name: name ?? this.name,
+      category: category ?? this.category,
       details: details ?? this.details,
+      imageUrl: imageUrl ?? this.imageUrl,
       price: price ?? this.price,
     );
   }
@@ -43,5 +55,5 @@ class Product extends BaseResponse {
       _$ProductFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, details, price];
+  List<Object?> get props => [id, name, details, category, imageUrl, price];
 }

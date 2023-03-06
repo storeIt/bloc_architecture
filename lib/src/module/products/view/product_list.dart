@@ -1,6 +1,5 @@
 import 'package:bloc_architecture/src/module/products/cubit/products_cubit.dart';
 import 'package:bloc_architecture/src/module/products/view/product_box.dart';
-import 'package:bloc_architecture/src/util/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,9 +14,13 @@ class ProductList extends StatefulWidget {
 
 class _ProductListState extends State<ProductList> {
   @override
-  Widget build(BuildContext context) {
+  initState() {
+    super.initState();
     context.read<ProductsCubit>().fetchProducts(context);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
@@ -39,6 +42,7 @@ class _ProductListState extends State<ProductList> {
                     ),
                     itemBuilder: (context, index) => ProductBox(
                       state.products[index],
+                      const Color(0xFF3D82AE),
                     ),
                   );
                 },

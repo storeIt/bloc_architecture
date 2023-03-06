@@ -10,14 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
 #  flutter_native_splash: ^2.2.17
-  dio: ^5.0.0
+  dio: ^5.0.1
   retrofit: ^4.0.1
   json_annotation: ^4.8.0
   equatable: ^2.0.5
   flutter_bloc: ^8.1.2
   get_it: ^7.2.0
-  logger: ^1.1.0
+  logger: ^1.2.2
   dartz: ^0.10.1
+  cached_network_image: ^3.2.3
+  path_provider: ^2.0.13
+  palette_generator: ^0.3.3+2
 
 dev_dependencies:
   flutter_test:
@@ -27,10 +30,10 @@ dev_dependencies:
   json_serializable: ^6.6.1
   retrofit_generator: ^5.0.0
 
-flutter_native_splash:
-  color: '#42a5f5'
-  image: assets/splash.png
-  android: true
+#flutter_native_splash:
+#  color: '#42a5f5'
+#  image: assets/splash.png
+#  android: true
 
 flutter:
   uses-material-design: true

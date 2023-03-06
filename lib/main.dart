@@ -18,7 +18,7 @@ void main() {
 // TODO : why runZonedGuarded is in another thread?
 
   FlutterError.onError = (FlutterErrorDetails details) {
-    locator<LoggerHelper>().e('main(), FlutterError.onError', details.exception, details.stack);
+    if (kDebugMode) locator<LoggerHelper>().e('main(), FlutterError.onError', details.exception, details.stack);
   };
   runZonedGuarded(() async {
     runApp(const App());

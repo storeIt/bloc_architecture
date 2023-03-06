@@ -1,3 +1,3 @@
 class Config {
-  static const baseUrl = 'https://hub.dummyapis.com';
+  static const baseUrl = 'https://fakestoreapi.com';
 }
