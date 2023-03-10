@@ -1,6 +1,12 @@
+import 'dart:async';
+import 'dart:ui' as ui;
+
 import 'package:bloc_architecture/src/base/app_cubit/base_cubit.dart';
+import 'package:bloc_architecture/src/constant/material/color.dart';
+import 'package:bloc_architecture/src/util/helper/color_helper.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../base/app_cubit/base_state.dart';
@@ -25,6 +31,14 @@ class ProductsCubit extends BaseCubit<ProductState> {
         success: (Right<Failure, List<Product>> products) {
           emit(state.copyWith(products: products.value));
         });
+  }
+
+  Stream<Color> getDominantColor(ui.Image image) async* {
+    Color color = defaultDominantColor;
+    ColorHelper.getDominantColor(image).then((value) {
+      color = value;
+    }) as Color;
+    yield color;
   }
 
   @override

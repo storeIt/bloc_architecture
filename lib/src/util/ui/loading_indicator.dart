@@ -29,24 +29,3 @@ class LoadingOverlay {
     }
   }
 }
-
-// class LoadingIndicator extends StatelessWidget {
-//   final LoadingOverlay _loadingOverlay = LoadingOverlay();
-//
-//   LoadingIndicator({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: BlocListener<AppBloc, AppState>(
-//         listener: (context, state) {
-//           if (state is AppLoadingState) {
-//             _loadingOverlay.showLoading(context);
-//           } else {
-//             _loadingOverlay.hideLoading();
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }

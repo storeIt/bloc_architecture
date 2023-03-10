@@ -1,17 +1,14 @@
-import 'dart:async';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:palette_generator/palette_generator.dart';
 
-import '../../../constant/ui_constants.dart';
-import '../model/product.dart';
+import '../../../../constant/material/color.dart';
+import '../../../../constant/material/dimens.dart';
+import '../../model/product.dart';
 
-class ProductBox extends StatelessWidget {
+class ProductTile extends StatelessWidget {
   final Product _product;
-  final Color _dominantColor;
 
-  const ProductBox(this._product, this._dominantColor, {super.key});
+  const ProductTile(this._product, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +20,6 @@ class ProductBox extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(defaultPadding),
-              // For  demo we use fixed height  and width
-              // Now we don't need them
               height: 180,
               width: 160,
               decoration: BoxDecoration(
@@ -40,14 +35,17 @@ class ProductBox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
                 child: CachedNetworkImage(
                   imageUrl: _product.imageUrl,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+                  imageBuilder: (context, imageProvider) {
+                    _product.image = Image(image: imageProvider, fit: BoxFit.cover);
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                   placeholder: (context, url) => Container(
                     color: Colors.grey[200],
                   ),
@@ -59,7 +57,6 @@ class ProductBox extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding / 4),
             child: Text(
-              // products is out demo list
               _product.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -73,25 +70,5 @@ class ProductBox extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<PaletteGenerator> _getPaletteGenerator() async {
-    final Completer<PaletteGenerator> completer = Completer();
-    final PaletteGenerator paletteGenerator = await PaletteGenerator.fromImageProvider(
-      CachedNetworkImageProvider(_product.imageUrl),
-      size: const Size(50, 50),
-      maximumColorCount: 20,
-    );
-    completer.complete(paletteGenerator);
-    return completer.future;
-  }
-
-  Future<Color> _getDominantColor() async {
-    Color dominantColor = Colors.white;
-    PaletteGenerator paletteGenerator = await _getPaletteGenerator();
-    if (paletteGenerator.dominantColor != null) {
-      dominantColor = paletteGenerator.dominantColor!.color;
-    }
-    return dominantColor;
   }
 }

@@ -1,9 +1,9 @@
 import 'package:bloc_architecture/src/module/products/cubit/products_cubit.dart';
-import 'package:bloc_architecture/src/module/products/view/product_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../constant/ui_constants.dart';
+import '../../../../constant/material/dimens.dart';
+import 'product_tile.dart';
 
 class ProductList extends StatefulWidget {
   const ProductList({super.key});
@@ -33,18 +33,14 @@ class _ProductListState extends State<ProductList> {
                 },
                 builder: (context, state) {
                   return GridView.builder(
-                    itemCount: state.products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: defaultPadding,
-                      crossAxisSpacing: defaultPadding,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemBuilder: (context, index) => ProductBox(
-                      state.products[index],
-                      const Color(0xFF3D82AE),
-                    ),
-                  );
+                      itemCount: state.products.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: defaultPadding,
+                        crossAxisSpacing: defaultPadding,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) => ProductTile(state.products[index]));
                 },
               ),
             ),

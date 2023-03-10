@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../products/cubit/products_cubit.dart';
 import '../../products/repository/products_repository.dart';
-import '../../products/view/product_list.dart';
+import '../../products/view/product_list/product_list.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});

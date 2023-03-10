@@ -8,7 +8,7 @@ class ProductsBlocObserver extends BlocObserver {
 
   @override
   void onEvent(Bloc bloc, Object? event) {
-    // _logger.i('ProductsBlocObserver onEvent $event');
+    _logger.i('ProductsBlocObserver onEvent $event');
     super.onEvent(bloc, event);
   }
 
