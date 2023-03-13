@@ -1,14 +1,16 @@
+import 'package:bloc_architecture/src/config/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
-import '../../../../constant/material/dimens.dart';
 import '../../model/product.dart';
 import 'body.dart';
 
-class DetailsScreen extends StatelessWidget {
+class ProductDetails extends StatelessWidget {
   final Product product;
 
-  const DetailsScreen({required this.product, super.key});
+  const ProductDetails({required this.product, super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,19 +30,8 @@ class DetailsScreen extends StatelessWidget {
           'assets/icons/back.svg',
           color: Colors.white,
         ),
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => context.go(AppRouter.home),
       ),
-      actions: <Widget>[
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: SvgPicture.asset("assets/icons/cart.svg"),
-          onPressed: () {},
-        ),
-        const SizedBox(width: defaultPadding / 2)
-      ],
     );
   }
 }

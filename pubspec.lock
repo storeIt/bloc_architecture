@@ -197,10 +197,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "7a03456c3490394c8e7665890333e91ae8a49be43542b616e414449ac358acd4"
+      sha256: "5be16bf1707658e4c03078d4a9b90208ded217fb02c163e207d334082412f2fb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.4"
+    version: "2.2.5"
   dartz:
     dependency: "direct main"
     description:
@@ -213,10 +213,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
+      sha256: "2644a9e0965a7aa3deb09cb8ce4081db4450c178f472818c8cd34216a3070d7b"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   equatable:
     dependency: "direct main"
     description:
@@ -307,6 +307,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -331,6 +336,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  go_router:
+    dependency: "direct main"
+    description:
+      name: go_router
+      sha256: b4bb06205ec607278b6fc23db238278417bca84a3905779cc68d1eb7afae37e2
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.2.0"
   graphs:
     dependency: transitive
     description:
@@ -631,10 +644,10 @@ packages:
     dependency: "direct dev"
     description:
       name: retrofit_generator
-      sha256: b3c5df182f1f88342089bc576f6abfebf5ff55f477d428e31e385e4822cfda12
+      sha256: "8f7edc6c8d6cbb5ad6064110a29ad8ce063b7177a39b373861e830349bae8ed2"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.0+1"
   rxdart:
     dependency: transitive
     description:
@@ -668,10 +681,10 @@ packages:
     dependency: transitive
     description:
       name: source_gen
-      sha256: "2d79738b6bbf38a43920e2b8d189e9a3ce6cc201f4b8fc76be5e4fe377b1c38d"
+      sha256: c2bea18c95cfa0276a366270afaa2850b09b4a76db95d546f3d003dcc7011298
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.6"
+    version: "1.2.7"
   source_helper:
     dependency: transitive
     description:

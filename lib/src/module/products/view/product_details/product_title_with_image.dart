@@ -1,3 +1,4 @@
+import 'package:bloc_architecture/src/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constant/material/dimens.dart';
@@ -15,9 +16,9 @@ class ProductTitleWithImage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const Text(
-            "Aristocratic Hand Bag",
-            style: TextStyle(color: Colors.white),
+          Text(
+            product.name,
+            style: const TextStyle(color: Colors.white),
           ),
           Text(
             product.name,
@@ -28,8 +29,8 @@ class ProductTitleWithImage extends StatelessWidget {
               RichText(
                 text: TextSpan(
                   children: [
-                    const TextSpan(text: "Price\n"),
-                    TextSpan(text: "\$${product.price}"),
+                    const TextSpan(text: '${AppConstants.price}\n'),
+                    TextSpan(text: '\$${product.price}'),
                   ],
                 ),
               ),
