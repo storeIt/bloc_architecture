@@ -11,23 +11,20 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // It provide us total height and width
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: size.height,
             child: Stack(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(top: size.height * 0.1),
                   padding: EdgeInsets.only(
                     top: size.height * 0.12,
                     left: defaultPadding,
                     right: defaultPadding,
                   ),
-                  // height: 500,
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -37,8 +34,8 @@ class Body extends StatelessWidget {
                   ),
                   child: Column(
                     children: <Widget>[
+                      ProductTitleWithImage(product: product),
                       const SizedBox(height: defaultPadding / 2),
-                      // Description(product: product),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                         child: Text(product.details, style: const TextStyle(height: 1.5)),
@@ -47,7 +44,6 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                ProductTitleWithImage(product: product)
               ],
             ),
           )

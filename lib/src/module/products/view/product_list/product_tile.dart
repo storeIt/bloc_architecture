@@ -30,28 +30,25 @@ class ProductTile extends StatelessWidget {
                 color: const Color(0xFF3D82AE),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Hero(
-                tag: _product.id,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: CachedNetworkImage(
-                    imageUrl: _product.imageUrl,
-                    imageBuilder: (context, imageProvider) {
-                      _product.image = Image(image: imageProvider, fit: BoxFit.cover);
-                      return Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                        ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: _product.imageUrl,
+                  imageBuilder: (context, imageProvider) {
+                    _product.image = Image(image: imageProvider, fit: BoxFit.cover);
+                    return Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
                       ),
-                      );
-                    },
-                    placeholder: (context, url) => Container(
-                      color: Colors.grey[200],
                     ),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    );
+                  },
+                  placeholder: (context, url) => Container(
+                    color: Colors.grey[200],
                   ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
@@ -66,7 +63,7 @@ class ProductTile extends StatelessWidget {
             ),
           ),
           Text(
-            '${_product.price}',
+            '\$${_product.price}',
             style: const TextStyle(fontWeight: FontWeight.bold),
           )
         ],

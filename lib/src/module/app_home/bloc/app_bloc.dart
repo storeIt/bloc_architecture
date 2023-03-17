@@ -10,12 +10,17 @@ part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  AppBloc() : super(AppInitialState()) {
+  LoadingOverlay loadingOverlay;
+
+  AppBloc(BuildContext context) : loadingOverlay = LoadingOverlay(context),
+        super(AppInitialState()) {
     on<AppLoadingEvent>((event, emit) {
       emit(AppLoadingState());
+      loadingOverlay.showLoading();
     });
     on<AppLoadedEvent>((event, emit) {
       emit(AppLoadedState());
+      loadingOverlay.hideLoading();
     });
   }
 }
