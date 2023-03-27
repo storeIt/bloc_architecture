@@ -13,19 +13,26 @@ class BaseDataProvider {
     DioErrorType.sendTimeout,
   ];
 
-  Future<Either<Failure, T>> executeRequest<T>({required Future<T> request}) async {
-
+  Future<Either<Object, T>> executeRequest<T>({required Future request}) async {
     try {
-      return Right(await request);
-    } on DioError catch (e, s) {
-      return Left(ServerFailure(_mapDioErrorToMessage(e), e, s));
-    } on SocketException catch (e, s) {
-      return Left(ConnectionFailure(e, s));
-    } on FormatException catch (e, s) {
-      return Left(FormatFailure(e, s));
-    } catch (e, s) {
-      return Left(UnhandledFailure(e, s));
+      final response = await request;
+      return Right(response);
+      // throw ServerFailure('Dummy error', DioError(requestOptions: RequestOptions()), StackTrace.current);
+    } catch (error) {
+      return Left(error);
     }
+  }
+
+  Failure onError(Object error, StackTrace stackTrace) {
+    switch (error.runtimeType) {
+      case DioError:
+        return ServerFailure(_mapDioErrorToMessage(error as DioError), error, StackTrace.current);
+      case SocketException:
+        return ConnectionFailure(error, StackTrace.current);
+      case FormatException:
+        return FormatFailure(error, StackTrace.current);
+    }
+    return UnhandledFailure(error, StackTrace.current);
   }
 
   String _mapDioErrorToMessage(DioError error) {
@@ -34,7 +41,7 @@ class BaseDataProvider {
       case DioErrorType.sendTimeout:
       case DioErrorType.receiveTimeout:
       case DioErrorType.connectionError:
-        return NetworkConstant.noConnection;
+        return NetworkConstant.serverError;
       case DioErrorType.badResponse:
         return NetworkConstant.badResponse;
       case DioErrorType.cancel:

@@ -19,8 +19,10 @@ class Product extends BaseResponse {
   @JsonKey(name: 'image')
   final String imageUrl;
   final double price;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   final Color dominantColor;
-  late Image? image;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  late Image? fetchedImage;
 
   Product({
     required this.id,
@@ -30,17 +32,17 @@ class Product extends BaseResponse {
     required this.imageUrl,
     required this.price,
     this.dominantColor = defaultDominantColor,
-    this.image,
+    this.fetchedImage,
   });
 
   static Product empty = Product(
-      id: 0,
-      name: '',
-      category: '',
-      details: '',
-      imageUrl: '',
-      price: 0.0,
-      dominantColor: defaultDominantColor,
+    id: 0,
+    name: '',
+    category: '',
+    details: '',
+    imageUrl: '',
+    price: 0.0,
+    dominantColor: defaultDominantColor,
   );
 
   Product copyWith({
@@ -51,7 +53,7 @@ class Product extends BaseResponse {
     String? imageUrl,
     double? price,
     Color? dominantColor,
-    Image? image,
+    Image? fetchedImage,
   }) {
     return Product(
       id: id ?? this.id,
@@ -61,7 +63,7 @@ class Product extends BaseResponse {
       imageUrl: imageUrl ?? this.imageUrl,
       price: price ?? this.price,
       dominantColor: dominantColor ?? this.dominantColor,
-      image: image ?? this.image,
+      fetchedImage: fetchedImage ?? this.fetchedImage,
     );
   }
 
@@ -69,5 +71,5 @@ class Product extends BaseResponse {
       _$ProductFromJson(json);
 
   @override
-  List<Object?> get props => [id, name, details, category, imageUrl, price, dominantColor, image];
+  List<Object?> get props => [id, name, details, category, imageUrl, price, dominantColor, fetchedImage];
 }

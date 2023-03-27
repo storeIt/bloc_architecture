@@ -33,7 +33,7 @@ class ProductTitleWithImage extends StatelessWidget {
               ),
               const SizedBox(width: defaultPadding),
               Expanded(
-                child: Image(image: product.image?.image as ImageProvider, fit: BoxFit.fill),
+                child: Image(image: product.fetchedImage?.image as ImageProvider, fit: BoxFit.fill),
               ),
             ],
           )

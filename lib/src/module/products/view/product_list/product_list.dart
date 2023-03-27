@@ -24,6 +24,7 @@ class _ProductListState extends State<ProductList> {
     _pagingController.addPageRequestListener((_) {
       context.read<ProductsCubit>().fetchProducts(context);
     });
+    _pagingController.refresh();
   }
 
   @override
@@ -56,11 +57,16 @@ class _ProductListState extends State<ProductList> {
                       crossAxisSpacing: defaultPadding,
                       childAspectRatio: 0.75,
                     ),
+                    showNewPageErrorIndicatorAsGridChild: false,
+                    showNewPageProgressIndicatorAsGridChild: false,
+                    showNoMoreItemsIndicatorAsGridChild: false,
                     pagingController: _pagingController,
                     builderDelegate: PagedChildBuilderDelegate<Product>(
                       itemBuilder: (context, item, index) {
                         return ProductTile(item);
                       },
+                      newPageProgressIndicatorBuilder: (_) => Container(),
+                      firstPageProgressIndicatorBuilder: (_) => Container(),
                     ),
                   );
                 },

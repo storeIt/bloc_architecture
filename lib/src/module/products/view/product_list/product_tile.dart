@@ -35,7 +35,7 @@ class ProductTile extends StatelessWidget {
                 child: CachedNetworkImage(
                   imageUrl: _product.imageUrl,
                   imageBuilder: (context, imageProvider) {
-                    _product.image = Image(image: imageProvider, fit: BoxFit.cover);
+                    _product.fetchedImage = Image(image: imageProvider, fit: BoxFit.cover);
                     return Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(

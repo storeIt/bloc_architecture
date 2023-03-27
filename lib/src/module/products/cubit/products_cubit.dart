@@ -24,12 +24,12 @@ class ProductsCubit extends BaseCubit<ProductState> {
       : _productsRepository = productsRepository,
         super(ProductState());
 
-  void fetchProducts(BuildContext context) async {
+  void fetchProducts<T>(BuildContext context) async {
     executeRequest(
         context: context,
         request: _productsRepository.fetchProducts(),
-        success: (Right<Failure, List<Product>> products) {
-          emit(state.copyWith(products: products.value));
+        success: (Right<Object, T> products) {
+          emit(state.copyWith(products: products.value as List<Product>));
         });
   }
 
@@ -39,11 +39,5 @@ class ProductsCubit extends BaseCubit<ProductState> {
       color = value;
     }) as Color;
     yield color;
-  }
-
-  @override
-  void onError(Object error, StackTrace stackTrace) {
-    logger.e('PrCubit onError', error, stackTrace);
-    super.onError(error, stackTrace);
   }
 }

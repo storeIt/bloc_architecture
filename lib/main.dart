@@ -11,8 +11,8 @@ import 'src/module/app_home/view/app.dart';
 import 'src/products_bloc_observer.dart';
 import 'src/util/service/service_locator.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   Bloc.observer = ProductsBlocObserver();
 // TODO : why runZonedGuarded is in another thread?
@@ -20,6 +20,7 @@ void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
     if (kDebugMode) locator<LoggerHelper>().e('main(), FlutterError.onError', details.exception, details.stack);
   };
+
   runZonedGuarded(() async {
     runApp(const App());
   }, (error, stack) {
