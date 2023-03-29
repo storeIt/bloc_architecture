@@ -18,7 +18,6 @@ class ProductTitleWithImage extends StatelessWidget {
         children: <Widget>[
           Text(
             product.name,
-            // style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(height: defaultPadding),
           Row(

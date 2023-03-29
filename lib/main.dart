@@ -15,7 +15,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   Bloc.observer = ProductsBlocObserver();
-// TODO : why runZonedGuarded is in another thread?
 
   FlutterError.onError = (FlutterErrorDetails details) {
     if (kDebugMode) locator<LoggerHelper>().e('main(), FlutterError.onError', details.exception, details.stack);
@@ -27,8 +26,6 @@ Future<void> main() async {
     // TODO : add to Firebase Crashlytics
     if (kDebugMode) {
       locator<LoggerHelper>().e('main() runZonedGuarded() $error', error, stack);
-    } else {
-      locator<LoggerHelper>().e('main() runZonedGuarded() else{} $error', error, stack);
     }
   });
 }
