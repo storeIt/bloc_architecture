@@ -1,4 +1,4 @@
-class AppConstants {
+class AppConstant {
   static const String unknownException = 'An error occurred';
   static const String confirm = 'ok';
 

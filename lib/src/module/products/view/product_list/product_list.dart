@@ -42,7 +42,7 @@ class _ProductListState extends State<ProductList> {
                     return;
                   }
                   final int currentSize = state.products.length + (_pagingController.itemList?.length ?? 0);
-                  final isLastPage = currentSize >= AppConstants.productListSize;
+                  final isLastPage = currentSize >= AppConstant.productListSize;
                   if (isLastPage) {
                     _pagingController.appendLastPage(state.products);
                   } else {

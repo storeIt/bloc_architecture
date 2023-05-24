@@ -1,6 +1,7 @@
-import 'package:bloc_architecture/src/util/service/rest_api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+
+import 'rest_api_service.dart';
 
 class RetrofitService {
   static final _dio = getDio();

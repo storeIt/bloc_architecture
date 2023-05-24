@@ -1,10 +1,10 @@
-import 'package:bloc_architecture/src/module/app_home/bloc/app_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../products/cubit/products_cubit.dart';
 import '../../products/repository/products_repository.dart';
 import '../../products/view/product_list/product_list.dart';
+import '../bloc/app_bloc.dart';
 
 class AppView extends StatefulWidget {
   const AppView({super.key});

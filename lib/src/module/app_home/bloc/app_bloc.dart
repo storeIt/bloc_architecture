@@ -1,19 +1,17 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
-import 'package:bloc_architecture/src/util/ui/dialog/dialog_presenter.dart';
-import 'package:bloc_architecture/src/util/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../util/ui/dialog/dialog_presenter.dart';
+import '../../../util/ui/loading_indicator.dart';
 
 part 'app_event.dart';
-
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
   LoadingOverlay loadingOverlay;
 
-  AppBloc(BuildContext context) : loadingOverlay = LoadingOverlay(context),
+  AppBloc(BuildContext context)
+      : loadingOverlay = LoadingOverlay(context),
         super(AppInitialState()) {
     on<AppLoadingEvent>((event, emit) {
       loadingOverlay.showLoading();

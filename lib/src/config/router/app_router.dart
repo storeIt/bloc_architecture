@@ -1,6 +1,6 @@
-import 'package:bloc_architecture/src/module/app_home/view/app_view.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../module/app_home/view/app_view.dart';
 import '../../module/products/model/product.dart';
 import '../../module/products/view/product_details/product_details.dart';
 
