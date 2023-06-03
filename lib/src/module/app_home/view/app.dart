@@ -1,6 +1,6 @@
-import 'package:bloc_architecture/src/config/router/app_router.dart';
-import 'package:bloc_architecture/src/module/app_home/view/app_view.dart';
 import 'package:flutter/material.dart';
+
+import '../../../config/router/app_router.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

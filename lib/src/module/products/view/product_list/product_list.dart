@@ -1,10 +1,10 @@
-import 'package:bloc_architecture/src/module/products/cubit/products_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../constant/app_constants.dart';
 import '../../../../constant/material/dimens.dart';
+import '../../cubit/products_cubit.dart';
 import '../../model/product.dart';
 import 'product_tile.dart';
 

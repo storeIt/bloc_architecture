@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:bloc_architecture/src/constant/network_constant.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../../constant/network_constant.dart';
 import '../exception/failure.dart';
 
 class BaseDataProvider {
